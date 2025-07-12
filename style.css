@@ -1,0 +1,175 @@
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    background-color: #0a0a0a; /* Deep dark background */
+    color: #e0e0e0;
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #1a1a1a !important;
+    border-bottom: 1px solid #222;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    padding: 12px 0;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #00eaff !important; /* Slightly brighter, cleaner blue */
+    letter-spacing: 1px;
+}
+
+.nav-link {
+    color: #c0c0c0 !important;
+    transition: color 0.2s ease;
+    font-weight: 500;
+    margin: 0 12px;
+    font-size: 1rem;
+}
+
+.nav-link:hover {
+    color: #00eaff !important;
+}
+
+.hero-section {
+    background: #1a1a1a; /* Solid dark background for simplicity */
+    padding: 120px 0;
+    color: white;
+    text-align: center;
+    border-bottom: 1px solid #222;
+}
+
+.hero-section h1 {
+    font-size: 4.5rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 800;
+    background: linear-gradient(45deg, #00eaff, #a050ff); /* Refined gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-section .lead {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    font-weight: 300;
+    color: #b0b0b0;
+}
+
+.hero-section .tagline {
+    font-style: italic;
+    opacity: 0.7;
+    font-size: 1.1rem;
+    color: #909090;
+}
+
+section {
+    background-color: #1a1a1a; /* Consistent dark background for sections */
+    padding: 60px;
+    border-radius: 8px; /* Less rounded for simplicity */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Softer shadow */
+    margin-bottom: 40px;
+    border: 1px solid #222;
+}
+
+h2 {
+    color: #00eaff; /* Accent color for headings */
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+    font-size: 3rem;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px; /* Shorter underline */
+    height: 3px; /* Thinner underline */
+    background: linear-gradient(90deg, #a050ff, #00eaff); /* Gradient underline */
+    border-radius: 2px;
+}
+
+h3 {
+    color: #a050ff; /* Secondary accent for subheadings */
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 1.6rem;
+}
+
+p {
+    color: #c0c0c0;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+pre {
+    background-color: #222; /* Simpler dark background for code */
+    padding: 20px;
+    border-radius: 6px;
+    overflow-x: auto;
+    color: #abb2bf;
+    border: 1px solid #333;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+code {
+    color: #e06c75;
+    background-color: rgba(0, 234, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.list-group-item {
+    background-color: #1a1a1a;
+    border-color: #222;
+    color: #e0e0e0;
+    font-size: 1.05rem;
+    padding: 15px 20px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.list-group-item:hover {
+    background-color: #222;
+}
+
+.list-group-item a {
+    color: #00eaff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.list-group-item a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #1a1a1a;
+    color: #b0b0b0;
+    padding: 40px 0;
+    margin-top: 60px;
+    border-top: 1px solid #222;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #00eaff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

@@ -1,12 +1,6 @@
-# Ema <img src="icon.svg" align="right" width="80" height="80" />
+# Writify
 
 > **Your AI-powered grammar fixer for Firefox**
-
----
-
-<p align="center">
-  <img src="icon.svg" width="120" height="120" alt="Ema Logo"/>
-</p>
 
 ---
 
@@ -25,8 +19,8 @@
 
 ### 2. Clone this Repository
 ```sh
-git clone https://github.com/yashokuu/Ema.git
-cd Ema
+git clone https://github.com/yasakei/Writify.git
+cd Writify
 ```
 
 ### 3. Save Your API Key
@@ -46,7 +40,7 @@ node proxy.js
 Or use [PM2](https://pm2.keymetrics.io/) to keep it running in the background:
 ```sh
 npm install -g pm2
-pm2 start proxy.js --name ema-proxy
+npm2 start proxy.js --name writify-proxy
 pm2 save
 ```
 

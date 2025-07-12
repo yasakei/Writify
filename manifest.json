@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Ema",
+  "name": "Writify",
   "version": "1.0",
   "description": "A browser extension that fixes your grammar using Gemini API when Ctrl+I is pressed.",
   "permissions": [

@@ -1,0 +1,10 @@
+# Ignore Node.js proxy dependencies and secrets
+node_modules/
+token
+pm-debug.log
+.DS_Store
+*.xpi
+*.zip
+# Ignore VSCode and OS files
+.vscode/
+Thumbs.db

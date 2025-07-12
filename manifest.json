@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Ema",
+  "version": "1.0",
+  "description": "A browser extension that fixes your grammar using Gemini API when Ctrl+I is pressed.",
+  "permissions": [
+    "activeTab",
+    "<all_urls>",
+    "http://localhost:3000/",
+    "https://generativelanguage.googleapis.com/"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "browser_action": {}
+}

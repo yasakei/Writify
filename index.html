@@ -1,124 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Writify - Your AI-powered grammar fixer</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Writify - Your AI-powered grammar fixer</title>
+
+  <!-- Tailwind CSS (CDN for demo; use a build in production) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'ui-sans-serif', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'],
+            mono: ['Fira Code', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas'],
+          },
+          colors: {
+            brand: {
+              50: '#eefaff',
+              100: '#d6f2ff',
+              200: '#b0e6ff',
+              300: '#7bd5ff',
+              400: '#39bdff',
+              500: '#0ea5ff',
+              600: '#0582d6',
+              700: '#0667a8',
+              800: '#0a557f',
+              900: '#0d4866',
+            }
+          },
+          boxShadow: {
+            glow: '0 0 25px rgba(14, 165, 255, 0.25)',
+          },
+          backgroundImage: {
+            'grid-s': 'linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)',
+          }
+        }
+      },
+      darkMode: 'class'
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <meta name="color-scheme" content="light dark"/>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Writify</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#features">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#getting-started">Getting Started</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#usage">Usage</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#troubleshooting">Troubleshooting</a>
-                    </li>
-                </ul>
+<body class="bg-neutral-950 text-neutral-100 font-sans antialiased selection:bg-brand-400/30 selection:text-white">
+
+  <!-- Nav -->
+  <nav class="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-neutral-900/60 bg-neutral-900/80 border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+        <a href="#" class="flex items-center gap-2">
+          <span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-brand-500/10 text-brand-400 ring-1 ring-inset ring-brand-500/30 shadow-glow">
+            <i data-lucide="wand-2"></i>
+          </span>
+          <span class="text-lg font-semibold tracking-tight">Writify</span>
+        </a>
+
+        <button id="mobileToggle" class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md hover:bg-white/5" aria-label="Toggle navigation">
+          <i data-lucide="menu"></i>
+        </button>
+
+        <ul id="navMenu" class="hidden lg:flex items-center gap-6 text-sm">
+          <li><a href="#features" class="hover:text-brand-300 transition">Features</a></li>
+          <li><a href="#getting-started" class="hover:text-brand-300 transition">Getting Started</a></li>
+          <li><a href="#usage" class="hover:text-brand-300 transition">Usage</a></li>
+          <li><a href="#troubleshooting" class="hover:text-brand-300 transition">Troubleshooting</a></li>
+        </ul>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="lg:hidden hidden pb-4">
+        <ul class="space-y-2 text-sm">
+          <li><a href="#features" class="block px-2 py-2 rounded hover:bg-white/5">Features</a></li>
+          <li><a href="#getting-started" class="block px-2 py-2 rounded hover:bg-white/5">Getting Started</a></li>
+          <li><a href="#usage" class="block px-2 py-2 rounded hover:bg-white/5">Usage</a></li>
+          <li><a href="#troubleshooting" class="block px-2 py-2 rounded hover:bg-white/5">Troubleshooting</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-brand-500/10 via-transparent to-transparent pointer-events-none"></div>
+    <div class="absolute inset-0 -z-10 bg-grid-s bg-[size:28px_28px] opacity-20 pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-4 py-20 text-center">
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">Writify</h1>
+      <p class="mt-4 text-lg md:text-xl text-neutral-300">Your AI-powered grammar fixer for Firefox</p>
+      <p class="mt-2 text-neutral-400">Made with ❤️ for better writing.</p>
+
+      <div class="mt-8 flex justify-center gap-3">
+        <a href="#getting-started" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-brand-500 text-white hover:bg-brand-400 transition shadow-glow">
+          <i data-lucide="rocket"></i>
+          Get Started
+        </a>
+        <a href="#features" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-white/10 hover:bg-white/5 transition">
+          <i data-lucide="sparkles"></i>
+          Features
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="max-w-6xl mx-auto px-4 py-12 space-y-20">
+
+    <!-- Features -->
+    <section id="features">
+      <h2 class="text-center text-3xl font-bold mb-10 flex items-center justify-center gap-3">
+        <i data-lucide="sparkles" class="w-7 h-7 text-brand-300"></i>
+        Features
+      </h2>
+      <ul class="grid md:grid-cols-3 gap-6">
+        <li class="rounded-xl border border-white/10 bg-white/5 p-5">
+          <div class="flex items-start gap-3">
+            <span class="text-brand-300"><i data-lucide="text-cursor-input" class="w-6 h-6"></i></span>
+            <div>
+              <p class="font-medium">Works everywhere</p>
+              <p class="text-sm text-neutral-300 mt-1">Instantly fixes grammar in any <code class="font-mono bg-white/10 px-1 py-0.5 rounded">textarea</code>, text <code class="font-mono bg-white/10 px-1 py-0.5 rounded">input</code>, or <code class="font-mono bg-white/10 px-1 py-0.5 rounded">contenteditable</code> field.</p>
             </div>
+          </div>
+        </li>
+        <li class="rounded-xl border border-white/10 bg-white/5 p-5">
+          <div class="flex items-start gap-3">
+            <span class="text-brand-300"><i data-lucide="brain-circuit" class="w-6 h-6"></i></span>
+            <div>
+              <p class="font-medium">Powered by Gemini</p>
+              <p class="text-sm text-neutral-300 mt-1">Uses Google Gemini API via a local Node.js proxy for fast and private processing.</p>
+            </div>
+          </div>
+        </li>
+        <li class="rounded-xl border border-white/10 bg-white/5 p-5">
+          <div class="flex items-start gap-3">
+            <span class="text-brand-300"><i data-lucide="zap" class="w-6 h-6"></i></span>
+            <div>
+              <p class="font-medium">Fast & easy</p>
+              <p class="text-sm text-neutral-300 mt-1">Minimal setup, simple hotkey, instant results.</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Getting Started -->
+    <section id="getting-started">
+      <h2 class="text-center text-3xl font-bold mb-8 flex items-center justify-center gap-3">
+        <i data-lucide="rocket" class="w-7 h-7 text-brand-300"></i>
+        Getting Started
+      </h2>
+
+      <div class="space-y-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
+            <i data-lucide="key-round" class="w-5 h-5 text-brand-300"></i>
+            1. Get a Gemini API Key
+          </h3>
+          <p>Go to <a href="https://aistudio.google.com/app/apikey" target="_blank" class="text-brand-300 underline underline-offset-4">Google AI Studio</a> and sign in with your Google account. Click <strong>Create API Key</strong> and copy your key.</p>
         </div>
-    </nav>
 
-    <header class="hero-section text-center text-white py-5">
-        <div class="container">
-            <h1 class="display-4">Writify</h1>
-            <p class="lead">Your AI-powered grammar fixer for Firefox</p>
-            <p class="tagline">Made with ❤️ for better writing.</p>
+        <div>
+          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
+            <i data-lucide="git-branch" class="w-5 h-5 text-brand-300"></i>
+            2. Clone this Repository
+          </h3>
+          <pre class="bg-black/60 border border-white/10 rounded-lg p-4 overflow-x-auto"><code class="font-mono text-sm text-neutral-200">git clone https://github.com/yasakei/Writify.git
+cd Writify</code></pre>
+          <p class="text-neutral-300 mt-2"><em></em></p>
         </div>
-    </header>
 
-    <main class="container my-5">
-        <section id="features" class="my-5">
-            <h2 class="text-center mb-4">✨ Features</h2>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Instantly fixes grammar in any <code>&lt;textarea&gt;</code>, text <code>&lt;input&gt;</code>, or <code>contenteditable</code> field</li>
-                <li class="list-group-item">Powered by Google Gemini API (via a local Node.js proxy)</li>
-                <li class="list-group-item">Fast, private, and easy to use</li>
-            </ul>
-        </section>
+        <div>
+          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
+            <i data-lucide="file-key-2" class="w-5 h-5 text-brand-300"></i>
+            3. Save Your API Key
+          </h3>
+          <p>Create a file named <code class="font-mono bg-white/10 px-1 py-0.5 rounded">token</code> (no extension) in the project root. Paste your Gemini API key into this file (the file should contain only the key, no spaces or newlines).</p>
+        </div>
 
-        <section id="getting-started" class="my-5">
-            <h2 class="text-center mb-4">🚀 Getting Started</h2>
-            <h3>1. Get a Gemini API Key</h3>
-            <p>Go to <a href="https://aistudio.google.com/app/apikey" target="_blank">Google AI Studio</a> and sign in with your Google account. Click <strong>Create API Key</strong> and copy your key.</p>
+        <div>
+          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
+            <i data-lucide="package" class="w-5 h-5 text-brand-300"></i>
+            4. Install Proxy Dependencies
+          </h3>
+          <pre class="bg-black/60 border border-white/10 rounded-lg p-4 overflow-x-auto"><code class="font-mono text-sm text-neutral-200">npm install</code></pre>
+        </div>
 
-            <h3>2. Clone this Repository</h3>
-            <pre><code class="language-sh">git clone https://github.com/yashokuu/Ema.git
-cd Ema</code></pre>
-            <p><em>Note: The repository name is 'Ema', but the project is rebranded to Writify.</em></p>
-
-            <h3>3. Save Your API Key</h3>
-            <p>Create a file named <code>token</code> (no extension) in the project root. Paste your Gemini API key into this file (the file should contain only the key, no spaces or newlines).</p>
-
-            <h3>4. Install Proxy Dependencies</h3>
-            <pre><code class="language-sh">npm install</code></pre>
-
-            <h3>5. Start the Proxy Server</h3>
-            <p>You can run the proxy manually:</p>
-            <pre><code class="language-sh">node proxy.js</code></pre>
-            <p>Or use <a href="https://pm2.keymetrics.io/" target="_blank">PM2</a> to keep it running in the background:</p>
-            <pre><code class="language-sh">npm install -g pm2
+        <div>
+          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
+            <i data-lucide="play" class="w-5 h-5 text-brand-300"></i>
+            5. Start the Proxy Server
+          </h3>
+          <p>You can run the proxy manually:</p>
+          <pre class="bg-black/60 border border-white/10 rounded-lg p-4 overflow-x-auto"><code class="font-mono text-sm text-neutral-200">node proxy.js</code></pre>
+          <p class="mt-2">Or use <a href="https://pm2.keymetrics.io/" target="_blank" class="text-brand-300 underline underline-offset-4">PM2</a> to keep it running in the background:</p>
+          <pre class="bg-black/60 border border-white/10 rounded-lg p-4 overflow-x-auto"><code class="font-mono text-sm text-neutral-200">npm install -g pm2
 pm2 start proxy.js --name writify-proxy
 pm2 save</code></pre>
-
-            <h3>6. Load the Extension in Firefox</h3>
-            <p>Open Firefox and go to <code>about:debugging#/runtime/this-firefox</code>. Click <strong>Load Temporary Add-on...</strong>. Select the <code>manifest.json</code> file from this repo.</p>
-            <p><strong>Note:</strong> For permanent installation, you must <a href="https://addons.mozilla.org/en-US/developers/" target="_blank">sign the extension with Mozilla</a>, then load the signed <code>.xpi</code> via <code>about:addons</code>.</p>
-        </section>
-
-        <section id="usage" class="my-5">
-            <h2 class="text-center mb-4">🖱️ Usage</h2>
-            <ul>
-                <li>Focus any text field, textarea, or contenteditable area</li>
-                <li>Press <strong>Ctrl+I</strong></li>
-                <li>Your grammar will be fixed automatically!</li>
-            </ul>
-        </section>
-
-        <section id="security-privacy" class="my-5">
-            <h2 class="text-center mb-4">🔒 Security & Privacy</h2>
-            <ul>
-                <li>Your text is only sent to the Gemini API via your local proxy.</li>
-                <li>Your API key is stored locally in the <code>token</code> file and never shared.</li>
-            </ul>
-        </section>
-
-        <section id="troubleshooting" class="my-5">
-            <h2 class="text-center mb-4">🛠 Troubleshooting</h2>
-            <ul>
-                <li>Make sure the proxy server is running (<code>node proxy.js</code> or via PM2)</li>
-                <li>Make sure your API key is valid and in the <code>token</code> file</li>
-                <li>If you see CORS or network errors, check that the proxy is running on <code>localhost:3000</code></li>
-                <li>If the extension says "corrupted" when loading, ensure there are no comments in <code>manifest.json</code> and you are zipping only the extension files (not the folder)</li>
-            </ul>
-        </section>
-    </main>
-
-    <footer class="bg-dark text-white text-center py-3">
-        <div class="container">
-            <p>&copy; 2025 Writify. All rights reserved. Licensed under the <a href="LICENSE" class="text-white">MIT License</a>.</p>
         </div>
-    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcOdihrwa7XzPqfEVFw" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+        <div>
+          <h3 class="text-xl font-semibold mb-2 flex items-center gap-2">
+            <i data-lucide="puzzle" class="w-5 h-5 text-brand-300"></i>
+            6. Load the Extension in Firefox
+          </h3>
+          <p>Open Firefox and go to <code class="font-mono bg-white/10 px-1 py-0.5 rounded">about:debugging#/runtime/this-firefox</code>. Click <strong>Load Temporary Add-on...</strong>. Select the <code class="font-mono bg-white/10 px-1 py-0.5 rounded">manifest.json</code> file from this repo.</p>
+          <p class="mt-2"><strong>Note:</strong> For permanent installation, you must <a href="https://addons.mozilla.org/en-US/developers/" target="_blank" class="text-brand-300 underline underline-offset-4">sign the extension with Mozilla</a>, then load the signed <code class="font-mono bg-white/10 px-1 py-0.5 rounded">.xpi</code> via <code class="font-mono bg-white/10 px-1 py-0.5 rounded">about:addons</code>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Usage -->
+    <section id="usage">
+      <h2 class="text-center text-3xl font-bold mb-6 flex items-center justify-center gap-3">
+        <i data-lucide="mouse-pointer-click" class="w-7 h-7 text-brand-300"></i>
+        Usage
+      </h2>
+      <ul class="grid md:grid-cols-3 gap-4">
+        <li class="flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-4 py-3">
+          <i data-lucide="focus" class="w-5 h-5 text-brand-300"></i>
+          Focus any text field, textarea, or contenteditable area
+        </li>
+        <li class="flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-4 py-3">
+          <i data-lucide="keyboard" class="w-5 h-5 text-brand-300"></i>
+          Press <strong class="ml-1">Ctrl+I</strong>
+        </li>
+        <li class="flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-4 py-3">
+          <i data-lucide="wand-2" class="w-5 h-5 text-brand-300"></i>
+          Your grammar will be fixed automatically!
+        </li>
+      </ul>
+    </section>
+
+    <!-- Security & Privacy -->
+    <section id="security-privacy">
+      <h2 class="text-center text-3xl font-bold mb-6 flex items-center justify-center gap-3">
+        <i data-lucide="shield-check" class="w-7 h-7 text-brand-300"></i>
+        Security & Privacy
+      </h2>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3">
+          <i data-lucide="shield" class="w-5 h-5 text-brand-300 mt-0.5"></i>
+          <span>Your text is only sent to the Gemini API via your local proxy.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i data-lucide="lock" class="w-5 h-5 text-brand-300 mt-0.5"></i>
+          <span>Your API key is stored locally in the <code class="font-mono bg-white/10 px-1 py-0.5 rounded">token</code> file and never shared.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Troubleshooting -->
+    <section id="troubleshooting">
+      <h2 class="text-center text-3xl font-bold mb-6 flex items-center justify-center gap-3">
+        <i data-lucide="wrench" class="w-7 h-7 text-brand-300"></i>
+        Troubleshooting
+      </h2>
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3">
+          <i data-lucide="server" class="w-5 h-5 text-brand-300 mt-0.5"></i>
+          <span>Make sure the proxy server is running (<code class="font-mono bg-white/10 px-1 py-0.5 rounded">node proxy.js</code> or via PM2)</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i data-lucide="key" class="w-5 h-5 text-brand-300 mt-0.5"></i>
+          <span>Make sure your API key is valid and in the <code class="font-mono bg-white/10 px-1 py-0.5 rounded">token</code> file</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i data-lucide="wifi-off" class="w-5 h-5 text-brand-300 mt-0.5"></i>
+          <span>If you see CORS or network errors, check that the proxy is running on <code class="font-mono bg-white/10 px-1 py-0.5 rounded">localhost:3000</code></span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i data-lucide="file-warning" class="w-5 h-5 text-brand-300 mt-0.5"></i>
+          <span>If the extension says "corrupted" when loading, ensure there are no comments in <code class="font-mono bg-white/10 px-1 py-0.5 rounded">manifest.json</code> and you are zipping only the extension files (not the folder)</span>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 mt-16">
+    <div class="max-w-6xl mx-auto px-4 py-8 text-center text-neutral-300">
+      <p>&copy; 2025 Yasakei. All rights reserved. Licensed under the
+        <a href="LICENSE" class="text-brand-300 underline underline-offset-4">MIT License</a>.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Optional: your custom script -->
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Mobile menu toggle
+    const toggleBtn = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (toggleBtn && mobileMenu) {
+      toggleBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  </script>
 </body>
 </html>

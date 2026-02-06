@@ -2,12 +2,11 @@
   "manifest_version": 2,
   "name": "Writify",
   "version": "1.0",
-  "description": "A browser extension that fixes your grammar using Gemini API when Ctrl+I is pressed.",
+  "description": "A browser extension that fixes your grammar using Gemini API when Ctrl+Shift+F is pressed.",
   "permissions": [
     "activeTab",
     "<all_urls>",
-    "http://localhost:3000/",
-    "https://generativelanguage.googleapis.com/"
+    "http://localhost:3000/"
   ],
   "background": {
     "scripts": ["background.js"]

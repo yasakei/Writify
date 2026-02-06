@@ -18,7 +18,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         const data = await res.json();
         console.log("[GrammarFixer] Proxy API response:", data);
 
-        const output = data.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
+        const output = data.corrected ?? "";
         console.log("[GrammarFixer] Output to sendResponse:", output);
         sendResponse(output.trim());
       } catch (err) {
